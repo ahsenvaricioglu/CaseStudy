@@ -14,3 +14,18 @@ GROUP BY
 ORDER BY 
     Year, TotalSalesAmount DESC;
 
+--product with the highest total sales amount
+
+SELECT 
+    p.ProductName,
+    SUM(s.Quantity) AS TotalUnitsSold
+FROM 
+    Sales s
+JOIN 
+    Products p ON s.ProductID = p.ProductID
+GROUP BY 
+    p.ProductName
+ORDER BY 
+    TotalUnitsSold DESC
+LIMIT 1;
+
