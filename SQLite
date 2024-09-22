@@ -1,0 +1,16 @@
+--total sales amount and number of sales for each product per year
+
+SELECT 
+    p.ProductName,
+    substr(s.SaleDate, 1, 4) AS Year,
+    SUM(s.Quantity * p.Price) AS TotalSalesAmount,
+    SUM(s.Quantity) AS TotalUnitsSold 
+FROM 
+    Sales s
+JOIN 
+    Products p ON s.ProductID = p.ProductID
+GROUP BY 
+    p.ProductName, substr(s.SaleDate, 1, 4)
+ORDER BY 
+    Year, TotalSalesAmount DESC;
+
